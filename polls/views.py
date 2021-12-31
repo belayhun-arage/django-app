@@ -3,12 +3,11 @@ from django.template import loader
 from .models import Question
 
 def index(request):
-    latest_questions= Question.objects.order_by('-pub_date')[:5]
-    print(latest_questions)
+    latest_question = Question.objects.order_by('-pub_date')[:5]
     # output=','.join([q.question_text for q in latest_questions])
     template=loader.get_template('polls/index.html')
     context={
-        'latest_questions':latest_questions
+        'latest_question':latest_question
     }
     return HttpResponse(template.render(context,request))
 
